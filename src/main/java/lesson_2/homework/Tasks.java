@@ -2,6 +2,8 @@ package lesson_2.homework;
 
 public class Tasks {
     public static void main(String[] args) {
+        task_1();
+        task_2();
     }
 
     /**
@@ -11,13 +13,13 @@ public class Tasks {
     public static void task_1() {
         int a = 1;
         String b = "1";
-//        if (a == b) {
-//            System.out.println("success");
-//        }
+        if (a == Integer.parseInt(b)) {
+            System.out.println("success");
+        }
 
-//        if (b.equals(a)) {
-//            System.out.println("success");
-//        }
+        if (b.equals(String.valueOf(a))) {
+            System.out.println("success");
+        }
     }
 
     /**
@@ -29,8 +31,10 @@ public class Tasks {
             switch (str) {
                 case "one":
                     System.out.print(1);
+                    break;
                 case "two":
                     System.out.print(2);
+                    break;
                 case "three":
                     System.out.print(3);
                 default:
@@ -39,7 +43,10 @@ public class Tasks {
 
             switch (str.indexOf("o")) {
                 case 0:
+                    System.out.print(2);
+                    break;
                 case 1:
+                    break;
                 case 2:
                     System.out.print(10);
             }
