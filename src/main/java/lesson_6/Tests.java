@@ -1,27 +1,54 @@
 package lesson_6;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Tests {
     public static void main(String[] args) {
+        System.out.println();
+        test_1();
+        System.out.println();
+        System.out.println();
+        test_2();
+        System.out.println();
+        System.out.println();
+        test_3();
+        System.out.println();
+        System.out.println();
+        test_4();
+        System.out.println();
+        System.out.println();
+        test_5();
+        System.out.println();
+        System.out.println();
+        test_6();
+        System.out.println();
+        System.out.println();
+        test_8();
+        System.out.println();
         System.out.println();
     }
 
     /**
      * Получить List чисел в виде текстовых элементов
      */
-    public void test_1() {
+    public static void test_1() {
         List<Integer> integerList = getIntList();
+        integerList.stream()
+                .map(integer -> getStringList().get(integer - 1))
+                .forEach(item -> System.out.print(item + " "));
     }
 
     /**
      * Отсортировать список по убыванию
      */
-    public void test_2() {
+    public static void test_2() {
         List<Integer> integerList = getIntList();
+        integerList.stream()
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList())
+                .forEach(item -> System.out.print(item + " "));
     }
 
     /**
@@ -30,15 +57,24 @@ public class Tests {
      * В начале итоговой строки должен быть текст "Number list: "
      * В конце итоговой строки должен быть текст "end of list.".
      */
-    public void test_3() {
+    public static void test_3() {
         List<String> stringList = getStringList();
+        List<String> list1 = stringList.stream()
+                .map(item -> "Number - " + item)
+                .collect(Collectors.toList());
+
+        System.out.print("Number list: " + list1 + ", end of list.");
     }
 
     /**
      * Получить мапу со значениями, ключи которых больше трех и меньше девяти
      */
-    public void test_4() {
+    public static void test_4() {
         Map<Integer, String> map = getMap();
+        map.entrySet().stream()
+                .filter(integerStringEntry -> integerStringEntry.getKey() > 3 && integerStringEntry.getKey() < 9)
+                .forEach(integerStringEntry -> System.out.print(integerStringEntry + " "));
+
     }
 
     /**
@@ -49,15 +85,22 @@ public class Tests {
      * Элемент 3: ключ - 2, значение "two"
      * и так далее.
      */
-    public void test_5() {
+    public static void test_5() {
         Map<Integer, String> map = getMap();
+        AtomicInteger count = new AtomicInteger();
+        new HashSet<>(map.entrySet())
+                .forEach(item -> System.out.println("Элемент " + getIntList().get(count.getAndIncrement()) + ": ключ - " + item.getKey() + ", значение " + item.getValue()));
     }
 
     /**
      * Установить во всех элементах isDisplayed = true, и оставить в списке только элементы с value NULL.
      */
-    public void test_6() {
+    public static void test_6() {
         List<WebElement> elements = getElements();
+        elements.stream()
+                .peek(webElement -> webElement.setDisplayed(true))
+                .filter(webElement -> webElement.getValue() == null)
+                .forEach(System.out::println);
     }
 
     /**
@@ -79,8 +122,11 @@ public class Tests {
      * ключ - текст
      * значение - тип элемента
      */
-    public void test_8() {
+    public static void test_8() {
         List<WebElement> elements = getElements();
+        elements.stream()
+                .collect(Collectors.toMap(WebElement::getText, WebElement::getType, (oldValue, newValue) -> newValue))
+                .forEach((key, value) -> System.out.println(key + " - " + value));
     }
 
     /**
@@ -115,7 +161,7 @@ public class Tests {
         list.add("five");
         list.add("six");
         list.add("seven");
-        list.add("one");
+        list.add("eight");
         list.add("nine");
         list.add("ten");
         return list;

@@ -46,4 +46,14 @@ public class WebElement {
     public String getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "WebElement{" +
+                "type=" + type +
+                ", isDisplayed=" + isDisplayed +
+                ", text='" + text + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }
