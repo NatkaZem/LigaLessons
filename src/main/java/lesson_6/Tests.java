@@ -47,7 +47,6 @@ public class Tests {
         List<Integer> integerList = getIntList();
         integerList.stream()
                 .sorted(Collections.reverseOrder())
-                .collect(Collectors.toList())
                 .forEach(item -> System.out.print(item + " "));
     }
 
@@ -74,7 +73,6 @@ public class Tests {
         map.entrySet().stream()
                 .filter(integerStringEntry -> integerStringEntry.getKey() > 3 && integerStringEntry.getKey() < 9)
                 .forEach(integerStringEntry -> System.out.print(integerStringEntry + " "));
-
     }
 
     /**
