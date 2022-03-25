@@ -6,6 +6,10 @@ public class Steps {
 
     private MvideoPage mvideoPage;
 
+//    public static void main(String[] args) {
+//        MvideoPage.getMvideoPage();
+//    }
+
     public Steps() {
         mvideoPage = MvideoPage.getMvideoPage();
     }
@@ -14,5 +18,7 @@ public class Steps {
         String actualTitle = mvideoPage.getProductTitle();
         Assert.assertEquals(actualTitle, expectedTitle);
     }
+
+
 
 }

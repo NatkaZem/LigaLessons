@@ -11,6 +11,10 @@ public class ProductCard {
     private SelenideElement addToFavoritesButton;
     private SelenideElement addToComparisonButton;
 
+
+    private SelenideElement priceSaleLabel;
+
+
     private final String XPATH_TITLE_LINE_CONTAINER = "//div[contains(@class, 'product-card__title-line-container')]";
     private final String XPATH_NESTED_NAME_LINK = "[mvid-plp-product-title[.//a[text() = ' %s ']]]";
 
@@ -27,6 +31,14 @@ public class ProductCard {
                 followingSiblingProductCheckoutButtonsContainer + "//div[contains(@class, 'wishlist-button-block')]//button");
         addToComparisonButton = Selenide.$x(titleContainerPath +
                 followingSiblingProductCheckoutButtonsContainer + "//div[contains(@class, 'compare-button-block')]//button");
+
+
+
+        priceSaleLabel = Selenide.$x(titleContainerPath +
+                "/following-sibling::div[contains(@class, 'product-card__price-block-container')]" +
+                "//span[@class = 'price__sale-value']");
+
+
     }
 
     static ProductCard getProductCard(String productName) {
