@@ -1,35 +1,35 @@
 package homeWorkMVideo;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import com.codeborne.selenide.SelenideElement;
 
 public class Steps {
-    private MvideoFridgePage mvideoFridgePage;
 
-        public Steps() {
-            mvideoFridgePage = MvideoFridgePage.getMvideoFridgePage();
-        }
+    private MVideoProductCard mVideoProductCard;
 
-        public void checkThatProductImageIsEqualsTo(String expectedImage) {
-            Object actualImage = mvideoFridgePage.getProductImage();
-            Assert.assertEquals(actualImage, expectedImage);
-        }
-
-//        //степ установки радиобатона
-//        WebElement elementRadioButton = driver.findElement(By.xpath("//div[contains(@class, 'switcher-block')][mvid-switcher[.//a[text() = ' %s ']]]"));
-//            elementRadioButton.click();
-//
-//
-//        //степ установки номера страницы в пагинации
-//        WebElement elementPagination = driver.findElement(By.xpath("//div[contains(@class, 'bottom-controls')]//a[text() = '%s']"));
-//    elementPagination.click();
-//
-//
-//        //степ установки чекбокса
-//        WebElement elementCheckbox = driver.findElement(By.xpath("//div[(@class = 'checkbox')][mvid-icon[@class = 'checkbox__icon']]//span[@class = 'checkbox__content'][.//a[text() = ' %s ']]"));
-//    elementCheckbox.click();
-
+    public Steps(String productName) {
+        this.mVideoProductCard = MVideoProductCard.getMvideoProductCard(productName);
     }
 
+    //степ установки радиобаттона
+    public void clickOnRadiobutton(String expectRadioButton) {
+        SelenideElement radioButton = mVideoProductCard.getAddRadioButton();
+        radioButton.click();
+    }
+
+    //степ установки чекбокса
+    public void clickOnCheckbox(String expectCheckBox) {
+        SelenideElement checkBox = mVideoProductCard.getAddCheckBox();
+        checkBox.click();
+    }
+
+    //степ переключения страницы пагинации
+    public void clickOnPagination(String expectPagination) {
+        SelenideElement paginationPage = mVideoProductCard.getAddPagination();
+        paginationPage.click();
+    }
+
+    //степ поиска товара по имени
+    public void findElement(String productName) {
+        mVideoProductCard = MVideoProductCard.getMvideoProductCard(productName);
+    }
+}

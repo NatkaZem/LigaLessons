@@ -2,7 +2,6 @@ package homeWorkMVideo;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import lesson_11.homework.pages.ProductCard;
 
 public class MVideoProductCard {
 
@@ -26,7 +25,7 @@ public class MVideoProductCard {
     private final String XPATH_NESTED_NAME_LINK = "[mvid-plp-product-title[.//a[text() = ' %s ']]]";
 
 
-    private ProductCard(String productName) {
+    private MVideoProductCard(String productName) {
         //название и модель холодильника:
         String titleContainerPath = String.format(XPATH_TITLE_LINE_CONTAINER + XPATH_NESTED_NAME_LINK, productName);
         titleLineContainer = Selenide.$x(titleContainerPath);
@@ -39,10 +38,10 @@ public class MVideoProductCard {
         //зачеркнутая цена холодильника:
         priceLabel_1 = Selenide.$x(titleContainerPath +
                 "/following-sibling::div[contains(@class, 'product-card__price-block-container')]" +
-                "//span[@class = 'price__sale-value']");
+                "//span[contains(@class, 'price__sale-value')]");
 
         //картинка с изображением холодильника (%s = productName):
-        pictureOfProduct = Selenide.$x("//div[contains(@class,'product-picture-container')]//img[@alt = ' %s ']");
+        pictureOfProduct = Selenide.$x("//div[contains(@class,'product-picture-container')]//img[@alt = '%s']");
 
 
         //рейтинг холодильника:
@@ -88,7 +87,67 @@ public class MVideoProductCard {
 
     }
 
-    static ProductCard getProductCard(String productName) {
-        return new ProductCard(productName);
+    static MVideoProductCard getMvideoProductCard(String productName) {
+        return new MVideoProductCard(productName);
+    }
+
+    public SelenideElement getTitleLineContainer() {
+        return titleLineContainer;
+    }
+
+    public SelenideElement getPriceLabel() {
+        return priceLabel;
+    }
+
+    public SelenideElement getAddToCartButton() {
+        return addToCartButton;
+    }
+
+    public SelenideElement getAddToFavoritesButton() {
+        return addToFavoritesButton;
+    }
+
+    public SelenideElement getAddToComparisonButton() {
+        return addToComparisonButton;
+    }
+
+    public SelenideElement getPictureOfProduct() {
+        return pictureOfProduct;
+    }
+
+    public SelenideElement getPriceLabel_1() {
+        return priceLabel_1;
+    }
+
+    public SelenideElement getRatingStars() {
+        return ratingStars;
+    }
+
+    public SelenideElement getRatingReview() {
+        return ratingReview;
+    }
+
+    public SelenideElement getAmountOfBonus() {
+        return amountOfBonus;
+    }
+
+    public SelenideElement getOnlyOneThing() {
+        return onlyOneThing;
+    }
+
+    public SelenideElement getAddRadioButton() {
+        return addRadioButton;
+    }
+
+    public SelenideElement getAddCheckBox() {
+        return addCheckBox;
+    }
+
+    public SelenideElement getAddPagination() {
+        return addPagination;
+    }
+
+    public SelenideElement getAddPaginationSing() {
+        return addPaginationSing;
     }
 }
